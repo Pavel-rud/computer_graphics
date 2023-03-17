@@ -9,6 +9,7 @@ set(PROJECT_HEADER_FILES
 set(PROJECT_SOURCE_FILES
 # Source files
     ${SRCROOT}/main.cpp
+    ${SRCROOT}/Models/Signal.cpp
 )
 
 add_executable(cg-executable
