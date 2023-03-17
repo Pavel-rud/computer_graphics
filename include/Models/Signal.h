@@ -1,36 +1,47 @@
 #include <iostream>
 #include <vector>
-#include <time.h>
 
-//TODO: модель времени
+
+struct timedate {
+	double sec;		
+	double min;		
+	double hour;
+
+	uint32_t day;
+	uint32_t month;	
+	uint32_t year;	
+	
+};
 
 class Channel {
-    using container = std::vector<std::pair<double, tm>>;
+    using container = std::vector<std::pair<double, timedate>>;
     using iterator = container::iterator;
 public:
-    container frequency(); 
+    Channel(std::string&& name) : name(std::move(name)) {}
+    container frequency; 
     std::string name;
-    std::pair<iterator, iterator> get_window(tm start_time, tm end_time);
+    std::pair<iterator, iterator> get_window(timedate start_time, timedate end_time);
 };
 
 
 class Signal{
 public:
-    const std::vector<Channel>& get_channels() {return Channels;}
+    std::vector<Channel>& get_channels() {return Channels;}
+    void add_channel(std::string&& name) {Channels.emplace_back(std::move(name));}
     uint64_t get_reports_count() {return reports_count;} // N
     void set_reports_count(uint64_t count) {reports_count = count;}
 
-    uint64_t get_sampling_frequency() {return sampling_frequency;}
-    void set_sampling_frequency(uint64_t count) {sampling_frequency = count;}
+    double get_sampling_frequency() {return sampling_frequency;}
+    void set_sampling_frequency(double count) {sampling_frequency = count;}
 
     uint64_t get_channel_count() {return channel_count;}
     void set_channel_count(uint64_t count) {channel_count = count;}
     
-    tm start_time;
-    tm end_time;
+    timedate start_time;
+    timedate end_time;
 
 private:
-    uint64_t sampling_frequency; // частота дискретизации
+    double sampling_frequency; // частота дискретизации
     uint64_t reports_count;
     uint64_t channel_count;
     std::vector<Channel> Channels;
