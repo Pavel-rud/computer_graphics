@@ -11,6 +11,11 @@ set(PROJECT_SOURCE_FILES
     ${SRCROOT}/main.cpp
 )
 
+add_subdirectory(FileSys)
+add_subdirectory(GUI)
+add_subdirectory(Models)
+add_subdirectory(Plot)
+
 add_executable(cg-executable
     ${PROJECT_HEADER_FILES}
     ${PROJECT_SOURCE_FILES}
