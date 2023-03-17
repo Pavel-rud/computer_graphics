@@ -1,0 +1,6 @@
+set(INCROOT ${PROJECT_SOURCE_DIR}/include/GUI/)
+set(SRCROOT ${PROJECT_SOURCE_DIR}/src/GUI/)
+
+set(SRC
+
+)
