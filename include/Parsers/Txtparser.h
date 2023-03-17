@@ -93,7 +93,31 @@ void parse_frequency(std::istream& file, Signal& signal) {
         if ((i % chan_count) == (chan_count - 1))
             recalculate_time(time, 1.0/signal.get_sampling_frequency());
     }
+    signal.end_time = time;
 
+    // sort frequency vector by time
+    for (auto &chan: signal.get_channels()) {
+        std::sort(chan.frequency.begin(), chan.frequency.end(), [](const auto& p1, const auto& p2) {
+        if (p1.second.year != p2.second.year)
+            return p1.second.year < p2.second.year;
+        
+        if (p1.second.month != p2.second.month)
+            return p1.second.month < p2.second.month;
+
+        if (p1.second.day != p2.second.day)
+            return p1.second.day < p2.second.day;
+
+        if (p1.second.hour != p2.second.hour)
+            return p1.second.hour < p2.second.hour;
+
+        if (p1.second.min != p2.second.min)
+            return p1.second.min < p2.second.min;
+
+        return p1.second.sec < p2.second.sec;
+        
+    });
+
+    }
 }
 
 

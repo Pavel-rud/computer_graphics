@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-
+#include <algorithm>
 
 struct timedate {
 	double sec;		
@@ -22,6 +22,7 @@ public:
     std::string name;
     std::pair<iterator, iterator> get_window(timedate start_time, timedate end_time);
 };
+
 
 
 class Signal{
