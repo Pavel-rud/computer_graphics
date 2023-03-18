@@ -31,7 +31,7 @@ std::pair<Channel::iterator, Channel::iterator> Channel::get_window(timedate sta
         my_cmp
     );
 
-    auto right_it = std::lower_bound(
+    auto right_it = std::upper_bound(
         this->frequency.begin(),
         this->frequency.end(),
         std::make_pair(0.0,end_time),
